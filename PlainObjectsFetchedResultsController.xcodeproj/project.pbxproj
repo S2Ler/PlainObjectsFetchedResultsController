@@ -43,12 +43,12 @@
             name = PlainObjectsFetchedResultsController;
             path = 'Sources';
             sourceTree = '<group>';
-            children = ('__PBXFileRef_Sources/SwiftyFetchedResultsController.swift', __PBXFileRef_PlainObjectsFetchedResultsController_Info.plist);
+            children = ('__PBXFileRef_Sources/PlainObjectFetchedResultsController.swift', __PBXFileRef_PlainObjectsFetchedResultsController_Info.plist);
         };
-        '__PBXFileRef_Sources/SwiftyFetchedResultsController.swift' = {
+        '__PBXFileRef_Sources/PlainObjectFetchedResultsController.swift' = {
             isa = PBXFileReference;
             lastKnownFileType = sourcecode.swift;
-            name = 'SwiftyFetchedResultsController.swift';
+            name = 'PlainObjectFetchedResultsController.swift';
             sourceTree = '<group>';
         };
         ______Target_PlainObjectsFetchedResultsController = {
@@ -70,12 +70,12 @@
         };
         CompilePhase_PlainObjectsFetchedResultsController = {
             isa = PBXSourcesBuildPhase;
-            files = ('__src_cc_ref_Sources/SwiftyFetchedResultsController.swift');
+            files = ('__src_cc_ref_Sources/PlainObjectFetchedResultsController.swift');
             runOnlyForDeploymentPostprocessing = 0;
         };
-        '__src_cc_ref_Sources/SwiftyFetchedResultsController.swift' = {
+        '__src_cc_ref_Sources/PlainObjectFetchedResultsController.swift' = {
             isa = PBXBuildFile;
-            fileRef = '__PBXFileRef_Sources/SwiftyFetchedResultsController.swift';
+            fileRef = '__PBXFileRef_Sources/PlainObjectFetchedResultsController.swift';
         };
         ___LinkPhase_PlainObjectsFetchedResultsController = {
             isa = PBXFrameworksBuildPhase;
