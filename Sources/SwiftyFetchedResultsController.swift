@@ -9,30 +9,30 @@ public protocol ModelObject {
 }
 
 @available(OSX 10.12, *)
-public protocol SwiftyFetchedResultsControllerDelegate: class {
+public protocol PlainObjectFetchedResultsControllerDelegate: class {
   associatedtype ObjectType: ModelObject
   
-  func controller(_ controller: SwiftyFetchedResultsController<ObjectType, Self>,
-                  didChangeSection sectionInfo: SwiftyFetchedResultsSectionInfo<ObjectType>,
+  func controller(_ controller: PlainObjectFetchedResultsController<ObjectType, Self>,
+                  didChangeSection sectionInfo: PlainObjectFetchedResultsSectionInfo<ObjectType>,
                   atIndex sectionIndex: Int,
                   forChangeType type: NSFetchedResultsChangeType)
   
-  func controller(_ controller: SwiftyFetchedResultsController<ObjectType, Self>,
+  func controller(_ controller: PlainObjectFetchedResultsController<ObjectType, Self>,
                   didChange anObject: ObjectType,
                   at indexPath: IndexPath?,
                   for type: NSFetchedResultsChangeType,
                   newIndexPath: IndexPath?)
   
-  func controllerWillChangeContent(_ controller: SwiftyFetchedResultsController<ObjectType, Self>)
+  func controllerWillChangeContent(_ controller: PlainObjectFetchedResultsController<ObjectType, Self>)
   
-  func controllerDidChangeContent(_ controller: SwiftyFetchedResultsController<ObjectType, Self>)
+  func controllerDidChangeContent(_ controller: PlainObjectFetchedResultsController<ObjectType, Self>)
   
-  func controller(_ controller: SwiftyFetchedResultsController<ObjectType, Self>,
+  func controller(_ controller: PlainObjectFetchedResultsController<ObjectType, Self>,
                   sectionIndexTitleForSectionName sectionName: String) -> String?
 }
 
 @available(OSX 10.12, *)
-public class SwiftyFetchedResultsController<ObjectType: ModelObject, DelegateType: SwiftyFetchedResultsControllerDelegate where DelegateType.ObjectType == ObjectType>: NSObject, NSFetchedResultsControllerDelegate {
+public class PlainObjectFetchedResultsController<ObjectType: ModelObject, DelegateType: PlainObjectFetchedResultsControllerDelegate where DelegateType.ObjectType == ObjectType>: NSObject, NSFetchedResultsControllerDelegate {
   
   public typealias FetchedResultsController = NSFetchedResultsController<ObjectType.ManagedObjectType>
   
@@ -53,9 +53,9 @@ public class SwiftyFetchedResultsController<ObjectType: ModelObject, DelegateTyp
     try fetchedResultsController.performFetch()
   }
   
-  public var sections: [SwiftyFetchedResultsSectionInfo<ObjectType>]? {
+  public var sections: [PlainObjectFetchedResultsSectionInfo<ObjectType>]? {
     return fetchedResultsController.sections?.map {
-      SwiftyFetchedResultsSectionInfo(sectionInfo: $0)
+      PlainObjectFetchedResultsSectionInfo(sectionInfo: $0)
     }
   }
   
@@ -66,7 +66,7 @@ public class SwiftyFetchedResultsController<ObjectType: ModelObject, DelegateTyp
                          didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
                          atIndex sectionIndex: Int,
                          forChangeType type: NSFetchedResultsChangeType) {
-    delegate.controller(self, didChangeSection: SwiftyFetchedResultsSectionInfo(sectionInfo: sectionInfo), atIndex: sectionIndex, forChangeType: type)
+    delegate.controller(self, didChangeSection: PlainObjectFetchedResultsSectionInfo(sectionInfo: sectionInfo), atIndex: sectionIndex, forChangeType: type)
   }
   
   public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
@@ -97,14 +97,14 @@ public class SwiftyFetchedResultsController<ObjectType: ModelObject, DelegateTyp
 }
 
 @available(OSX 10.12, *)
-public extension SwiftyFetchedResultsController {
+public extension PlainObjectFetchedResultsController {
   public func object(at indexPath: IndexPath) -> ObjectType {
     let managedObject = fetchedResultsController.object(at: indexPath)
     return ObjectType(managedObject: managedObject)
   }
 }
 
-public final class SwiftyFetchedResultsSectionInfo<ObjectType: ModelObject> {
+public final class PlainObjectFetchedResultsSectionInfo<ObjectType: ModelObject> {
   private let sectionInfo: NSFetchedResultsSectionInfo
   
   public init(sectionInfo: NSFetchedResultsSectionInfo) {
