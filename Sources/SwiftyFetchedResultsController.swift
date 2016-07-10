@@ -8,27 +8,39 @@ public protocol ModelObject {
   init(managedObject: ManagedObjectType)
 }
 
+@available(OSX 10.12, *)
 public protocol SwiftyFetchedResultsControllerDelegate: class {
   associatedtype ObjectType: ModelObject
-  func controller(controller: SwiftyFetchedResultsController<ObjectType, Self>,
+  
+  func controller(_ controller: SwiftyFetchedResultsController<ObjectType, Self>,
                   didChangeSection sectionInfo: SwiftyFetchedResultsSectionInfo<ObjectType>,
-                                   atIndex sectionIndex: Int,
-                                           forChangeType type: NSFetchedResultsChangeType)
-  func controller(controller: SwiftyFetchedResultsController<ObjectType, Self>,
-                  didChangeObject anObject: ObjectType,
-                                  atIndexPath indexPath: NSIndexPath?,
-                                              forChangeType type: NSFetchedResultsChangeType,
-                                                            newIndexPath: NSIndexPath?)
-  func controllerWillChangeContent(controller: SwiftyFetchedResultsController<ObjectType, Self>)
-  func controllerDidChangeContent(controller: SwiftyFetchedResultsController<ObjectType, Self>)
-  func controller(controller: SwiftyFetchedResultsController<ObjectType, Self>, sectionIndexTitleForSectionName sectionName: String) -> String?
+                  atIndex sectionIndex: Int,
+                  forChangeType type: NSFetchedResultsChangeType)
+  
+  func controller(_ controller: SwiftyFetchedResultsController<ObjectType, Self>,
+                  didChange anObject: ObjectType,
+                  at indexPath: IndexPath?,
+                  for type: NSFetchedResultsChangeType,
+                  newIndexPath: IndexPath?)
+  
+  func controllerWillChangeContent(_ controller: SwiftyFetchedResultsController<ObjectType, Self>)
+  
+  func controllerDidChangeContent(_ controller: SwiftyFetchedResultsController<ObjectType, Self>)
+  
+  func controller(_ controller: SwiftyFetchedResultsController<ObjectType, Self>,
+                  sectionIndexTitleForSectionName sectionName: String) -> String?
 }
 
+@available(OSX 10.12, *)
 public class SwiftyFetchedResultsController<ObjectType: ModelObject, DelegateType: SwiftyFetchedResultsControllerDelegate where DelegateType.ObjectType == ObjectType>: NSObject, NSFetchedResultsControllerDelegate {
-  private let fetchedResultsController: NSFetchedResultsController
+  
+  public typealias FetchedResultsController = NSFetchedResultsController<ObjectType.ManagedObjectType>
+  
+  private let fetchedResultsController: FetchedResultsController
+  
   private let delegate: DelegateType
   
-  public init(fetchedResultsController: NSFetchedResultsController,
+  public init(fetchedResultsController: FetchedResultsController,
               delegate: DelegateType) {
     self.fetchedResultsController = fetchedResultsController
     self.delegate = delegate
@@ -50,43 +62,44 @@ public class SwiftyFetchedResultsController<ObjectType: ModelObject, DelegateTyp
   
   //MARK: - NSFetchedResultsControllerDelegate
   @objc
-  public func controller(controller: NSFetchedResultsController,
+  public func controller(controller: NSFetchedResultsController<ObjectType.ManagedObjectType>,
                          didChangeSection sectionInfo: NSFetchedResultsSectionInfo,
-                                          atIndex sectionIndex: Int,
-                                                  forChangeType type: NSFetchedResultsChangeType) {
+                         atIndex sectionIndex: Int,
+                         forChangeType type: NSFetchedResultsChangeType) {
     delegate.controller(self, didChangeSection: SwiftyFetchedResultsSectionInfo(sectionInfo: sectionInfo), atIndex: sectionIndex, forChangeType: type)
   }
   
-  @objc
-  public func controller(controller: NSFetchedResultsController,
-                         didChangeObject anObject: AnyObject,
-                                         atIndexPath indexPath: NSIndexPath?,
-                                                     forChangeType type: NSFetchedResultsChangeType,
-                                                                   newIndexPath: NSIndexPath?) {
+  public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                         didChange anObject: AnyObject,
+                         at indexPath: IndexPath?,
+                         for type: NSFetchedResultsChangeType,
+                         newIndexPath: IndexPath?) {
     let managedObject = anObject as! ObjectType.ManagedObjectType
     let modelObject = ObjectType(managedObject: managedObject)
-    delegate.controller(self, didChangeObject: modelObject, atIndexPath: indexPath, forChangeType: type, newIndexPath: newIndexPath)
+    delegate.controller(self, didChange: modelObject, at: indexPath, for: type, newIndexPath: newIndexPath)
   }
   
   @objc
-  public func controllerWillChangeContent(controller: NSFetchedResultsController) {
+  public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     delegate.controllerWillChangeContent(self)
   }
   
   @objc
-  public func controllerDidChangeContent(controller: NSFetchedResultsController) {
+  public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
     delegate.controllerDidChangeContent(self)
   }
   
   @objc
-  public func controller(controller: NSFetchedResultsController, sectionIndexTitleForSectionName sectionName: String) -> String? {
+  public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
+                         sectionIndexTitleForSectionName sectionName: String) -> String? {
     return delegate.controller(self, sectionIndexTitleForSectionName: sectionName)
   }
 }
 
+@available(OSX 10.12, *)
 public extension SwiftyFetchedResultsController {
-  public func object(atIndexPath indexPath: NSIndexPath) -> ObjectType {
-    let managedObject = fetchedResultsController.objectAtIndexPath(indexPath) as! ObjectType.ManagedObjectType
+  public func object(at indexPath: IndexPath) -> ObjectType {
+    let managedObject = fetchedResultsController.object(at: indexPath)
     return ObjectType(managedObject: managedObject)
   }
 }

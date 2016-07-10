@@ -1,0 +1,149 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    classes = {};
+    objectVersion = 46;
+    rootObject = __RootObject_;
+    objects = {
+        __RootObject_ = {
+            isa = PBXProject;
+            attributes = {LastUpgradeCheck = 9999;};
+            buildConfigurationList = ___RootConfs_;
+            compatibilityVersion = 'Xcode 3.2';
+            developmentRegion = English;
+            hasScannedForEncodings = 0;
+            knownRegions = (en);
+            mainGroup = ___RootGroup_;
+            productRefGroup = ____Products_;
+            projectDirPath = '';
+            projectRoot = '';
+            targets = (______Target_PlainObjectsFetchedResultsController);
+        };
+        '__PBXFileRef_Package.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            name = 'Package.swift';
+            path = 'Package.swift';
+            sourceTree = '<group>';
+        };
+        ___RootGroup_ = {
+            isa = PBXGroup;
+            children = ('__PBXFileRef_Package.swift', _____Configs_, _____Sources_, Dependencies_, _______Tests_, ____Products_);
+            sourceTree = '<group>';
+        };
+        __PBXFileRef_PlainObjectsFetchedResultsController_Info.plist = {
+            isa = PBXFileReference;
+            lastKnownFileType = text.plist.xml;
+            name = 'PlainObjectsFetchedResultsController_Info.plist';
+            path = 'PlainObjectsFetchedResultsController.xcodeproj/PlainObjectsFetchedResultsController_Info.plist';
+            sourceTree = SOURCE_ROOT;
+        };
+        _______Group_PlainObjectsFetchedResultsController = {
+            isa = PBXGroup;
+            name = PlainObjectsFetchedResultsController;
+            path = 'Sources';
+            sourceTree = '<group>';
+            children = ('__PBXFileRef_Sources/SwiftyFetchedResultsController.swift', __PBXFileRef_PlainObjectsFetchedResultsController_Info.plist);
+        };
+        '__PBXFileRef_Sources/SwiftyFetchedResultsController.swift' = {
+            isa = PBXFileReference;
+            lastKnownFileType = sourcecode.swift;
+            name = 'SwiftyFetchedResultsController.swift';
+            sourceTree = '<group>';
+        };
+        ______Target_PlainObjectsFetchedResultsController = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = _______Confs_PlainObjectsFetchedResultsController;
+            buildPhases = (CompilePhase_PlainObjectsFetchedResultsController, ___LinkPhase_PlainObjectsFetchedResultsController);
+            buildRules = ();
+            dependencies = ();
+            name = PlainObjectsFetchedResultsController;
+            productName = PlainObjectsFetchedResultsController;
+            productReference = _____Product_PlainObjectsFetchedResultsController;
+            productType = 'com.apple.product-type.framework';
+        };
+        _____Product_PlainObjectsFetchedResultsController = {
+            isa = PBXFileReference;
+            explicitFileType = 'wrapper.framework';
+            path = 'PlainObjectsFetchedResultsController.framework';
+            sourceTree = BUILT_PRODUCTS_DIR;
+        };
+        CompilePhase_PlainObjectsFetchedResultsController = {
+            isa = PBXSourcesBuildPhase;
+            files = ('__src_cc_ref_Sources/SwiftyFetchedResultsController.swift');
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        '__src_cc_ref_Sources/SwiftyFetchedResultsController.swift' = {
+            isa = PBXBuildFile;
+            fileRef = '__PBXFileRef_Sources/SwiftyFetchedResultsController.swift';
+        };
+        ___LinkPhase_PlainObjectsFetchedResultsController = {
+            isa = PBXFrameworksBuildPhase;
+            files = ();
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        _______Confs_PlainObjectsFetchedResultsController = {
+            isa = XCConfigurationList;
+            buildConfigurations = (___DebugConf_PlainObjectsFetchedResultsController, _ReleaseConf_PlainObjectsFetchedResultsController);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+        ___DebugConf_PlainObjectsFetchedResultsController = {
+            isa = XCBuildConfiguration;
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'PlainObjectsFetchedResultsController.xcodeproj/PlainObjectsFetchedResultsController_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; SWIFT_OPTIMIZATION_LEVEL = '-Onone'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; };
+            name = Debug;
+        };
+        _ReleaseConf_PlainObjectsFetchedResultsController = {
+            isa = XCBuildConfiguration;
+            buildSettings = { LD_RUNPATH_SEARCH_PATHS = '$(TOOLCHAIN_DIR)/usr/lib/swift/macosx'; PRODUCT_MODULE_NAME = '$(TARGET_NAME:c99extidentifier)'; ENABLE_TESTABILITY = 'YES'; OTHER_SWIFT_FLAGS = '$(inherited)'; INFOPLIST_FILE = 'PlainObjectsFetchedResultsController.xcodeproj/PlainObjectsFetchedResultsController_Info.plist'; FRAMEWORK_SEARCH_PATHS = '$(PLATFORM_DIR)/Developer/Library/Frameworks'; OTHER_LDFLAGS = '$(inherited)'; PRODUCT_NAME = '$(TARGET_NAME:c99extidentifier)'; };
+            name = Release;
+        };
+        __Dependency_PlainObjectsFetchedResultsController = {
+            isa = PBXTargetDependency;
+            target = ______Target_PlainObjectsFetchedResultsController;
+        };
+        '__PBXFileRef_PlainObjectsFetchedResultsController.xcodeproj/Configs/Project.xcconfig' = {
+            isa = PBXFileReference;
+            lastKnownFileType = text.xcconfig;
+            name = 'Project.xcconfig';
+            path = 'PlainObjectsFetchedResultsController.xcodeproj/Configs/Project.xcconfig';
+            sourceTree = '<group>';
+        };
+        _____Configs_ = {
+            isa = PBXGroup;
+            children = ('__PBXFileRef_PlainObjectsFetchedResultsController.xcodeproj/Configs/Project.xcconfig');
+            name = Configs;
+            sourceTree = '<group>';
+        };
+        _____Sources_ = {
+            isa = PBXGroup;
+            children = (_______Group_PlainObjectsFetchedResultsController);
+            name = Sources;
+            sourceTree = '<group>';
+        };
+        ____Products_ = {
+            isa = PBXGroup;
+            children = (_____Product_PlainObjectsFetchedResultsController);
+            name = Products;
+            sourceTree = '<group>';
+        };
+        _______Debug_ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = '__PBXFileRef_PlainObjectsFetchedResultsController.xcodeproj/Configs/Project.xcconfig';
+            buildSettings = {};
+            name = Debug;
+        };
+        _____Release_ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = '__PBXFileRef_PlainObjectsFetchedResultsController.xcodeproj/Configs/Project.xcconfig';
+            buildSettings = {};
+            name = Release;
+        };
+        ___RootConfs_ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (_______Debug_, _____Release_);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Debug;
+        };
+    };
+}
