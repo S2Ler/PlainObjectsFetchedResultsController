@@ -32,11 +32,11 @@ public protocol PlainObjectFetchedResultsControllerDelegate: class {
 }
 
 @available(OSX 10.12, *)
-public class PlainObjectFetchedResultsController<ObjectType: ModelObject, DelegateType: PlainObjectFetchedResultsControllerDelegate where DelegateType.ObjectType == ObjectType>: NSObject, NSFetchedResultsControllerDelegate {
+public class PlainObjectFetchedResultsController<ObjectType: ModelObject, DelegateType: PlainObjectFetchedResultsControllerDelegate>: NSObject, NSFetchedResultsControllerDelegate where DelegateType.ObjectType == ObjectType {
   
   public typealias FetchedResultsController = NSFetchedResultsController<ObjectType.ManagedObjectType>
   
-  private let fetchedResultsController: FetchedResultsController
+  fileprivate let fetchedResultsController: FetchedResultsController
   
   private let delegate: DelegateType
   
@@ -70,7 +70,7 @@ public class PlainObjectFetchedResultsController<ObjectType: ModelObject, Delega
   }
   
   public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>,
-                         didChange anObject: AnyObject,
+                         didChange anObject: Any,
                          at indexPath: IndexPath?,
                          for type: NSFetchedResultsChangeType,
                          newIndexPath: IndexPath?) {
@@ -112,23 +112,23 @@ public final class PlainObjectFetchedResultsSectionInfo<ObjectType: ModelObject>
   }
   
   /// Name of the section
-  var name: String {
+  public var name: String {
     return sectionInfo.name
   }
   
   /// Title of the section (used when displaying the index)
-  var indexTitle: String? {
+  public var indexTitle: String? {
     return sectionInfo.indexTitle
   }
   
   ///Number of objects in section
-  var numberOfObjects: Int {
+  public var numberOfObjects: Int {
     return sectionInfo.numberOfObjects
   }
   
   /// Returns the array of objects in the section.
   /// - complexity: traverse all managed objects and convert them to ObjectType. Can be expensive if there are many managed objects in section.
-  var modelObjects: [ObjectType]? {
+  public var modelObjects: [ObjectType]? {
     return sectionInfo.objects?.map { ObjectType(managedObject: $0 as! ObjectType.ManagedObjectType) }
   }
 }
